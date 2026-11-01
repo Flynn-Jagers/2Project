@@ -2,15 +2,15 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class TripPoint {
-	double lat;
-	double lon;
-	int time;
-	ArrayList<TripPoint> trip = new ArrayList<TripPoint>();
+	private double lat;
+	private double lon;
+	private int time;
+	private static ArrayList<TripPoint> trip = new ArrayList<TripPoint>();
 	
 	public TripPoint(int time, double lat, double lon) {
-		time = this.time;
-		lat = this.lat;
-		lon = this.lon;
+		this.time = time;
+		this.lat = lat;
+		this.lon = lon;
 	}
 	
 	
@@ -26,11 +26,9 @@ public class TripPoint {
 		return lon;
 	}
 	
-	public double getTrip() {
-		
+	public ArrayList<TripPoint> getTrip() {
+		return new ArrayList<>(trip);
 	}
-	
-	//public static getTrip() {}
 
 //------------------------------------------------------------------------
 	
