@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class TripPoint {
 	private double lat;
@@ -50,6 +52,31 @@ public class TripPoint {
 	}
 	
 	public static void readFile(String filename) {
+		File doc = new File(filename);
+		try {
+			Scanner scan = new Scanner(doc);
+			
+			if(scan.hasNextLine()) //SHOULD skipp the header 
+			{scan.nextLine();}
+		
+		while(scan.hasNextLine()) {
+			String line = scan.nextLine();
+			String[] stuff = line.split(",");
+			
+			int time1 = Integer.parseInt(stuff[0]);
+			double latitude = Double.parseDouble(stuff[1]);
+			double longitude = Double.parseDouble(stuff[2]);
+			
+			TripPoint data = new TripPoint(time1, latitude, longitude);
+			trip.add(data);
+		}
+		
+		scan.close();
+	}
+		catch (FileNotFoundException e) {
+			System.out.println("No file");
+			e.printStackTrace();
+		}
 		
 	}
 }
