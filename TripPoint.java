@@ -42,8 +42,21 @@ public class TripPoint {
 		
 	}
 	
-	public double avgSpeed() {
+	public double avgSpeed(TripPoint a, TripPoint b) {
+		//my cat just laid on my arm and trapped it how am i supost to code with one hand?
+		//at least shes cute
 		
+		double distanceAB = haversineDistance(a, b);
+		
+		double timeMin = Math.abs(a.getTime() - b.getTime());
+		
+		if (timeMin == 0.0)
+		{return 0.0;}
+		
+		double timeHour = timeMin / 60.0;
+		double avgSped = distanceAB / timeHour;
+		
+		return avgSped;
 	}
 	
 	public double totalTime() {//return time in hours
