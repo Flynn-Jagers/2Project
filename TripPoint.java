@@ -56,7 +56,15 @@ public class TripPoint {
 	}
 	
 	public double totalDistance() {
+		double disTotal = 0.0;
 		
+		for(int i = 0; i < trip.size() - 1; i++) {
+			TripPoint now = trip.get(i);
+			TripPoint next = trip.get(i + 1);
+			disTotal = disTotal + haversineDistance(now, next);
+		}
+		
+		return disTotal;
 	}
 	
 	public double avgSpeed(TripPoint a, TripPoint b) {
