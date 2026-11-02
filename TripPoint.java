@@ -35,7 +35,24 @@ public class TripPoint {
 //------------------------------------------------------------------------
 	
 	public double haversineDistance(TripPoint a, TripPoint b) {
+		final double RADIUS = 6371.0;
 		
+		double latidute1 = Math.toRadians(a.getLat());
+		double latidute2 = Math.toRadians(b.getLat());
+		
+		double longA = Math.toRadians(a.getLon());
+		double longB = Math.toRadians(b.getLon());
+		
+		double deltaLatAB = latidute2 - latidute1;
+		double deltaLonAB = longB - longA;
+		
+		double step2 = Math.sin(deltaLatAB / 2) * Math.sin(deltaLatAB / 2) 
+				+ Math.cos(latidute1) * Math.cos(latidute2) * Math.sin( deltaLonAB / 2) 
+				* Math.sin(deltaLonAB / 2);
+		
+		double step3 = Math.asin(Math.sqrt(step2));
+		
+		return RADIUS * step3;
 	}
 	
 	public double totalDistance() {
