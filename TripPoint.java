@@ -28,7 +28,7 @@ public class TripPoint {
 		return lon;
 	}
 	
-	public ArrayList<TripPoint> getTrip() {
+	public static ArrayList<TripPoint> getTrip() {
 		return new ArrayList<>(trip);
 	}
 
@@ -85,8 +85,13 @@ public class TripPoint {
 	}
 	
 	public static double totalTime() {//return time in hours
-		double timeHours;
-		return timeHours = time/60;
+		
+		int start = trip.get(0).getTime();
+		int end = trip.get(trip.size() - 1).getTime();
+		
+		double minFinal = end - start;
+		
+		return minFinal / 60.0;
 	}
 	
 	public static void readFile(String filename) {
