@@ -34,7 +34,7 @@ public class TripPoint {
 
 //------------------------------------------------------------------------
 	
-	public double haversineDistance(TripPoint a, TripPoint b) {
+	public static double haversineDistance(TripPoint a, TripPoint b) {
 		final double RADIUS = 6371.0;
 		
 		double latidute1 = Math.toRadians(a.getLat());
@@ -55,7 +55,7 @@ public class TripPoint {
 		return RADIUS * step3;
 	}
 	
-	public double totalDistance() {
+	public static double totalDistance() {
 		double disTotal = 0.0;
 		
 		for(int i = 0; i < trip.size() - 1; i++) {
@@ -67,7 +67,7 @@ public class TripPoint {
 		return disTotal;
 	}
 	
-	public double avgSpeed(TripPoint a, TripPoint b) {
+	public static double avgSpeed(TripPoint a, TripPoint b) {
 		//my cat just laid on my arm and trapped it how am i supost to code with one hand?
 		//at least shes cute
 		
@@ -84,7 +84,7 @@ public class TripPoint {
 		return avgSped;
 	}
 	
-	public double totalTime() {//return time in hours
+	public static double totalTime() {//return time in hours
 		double timeHours;
 		return timeHours = time/60;
 	}
@@ -101,9 +101,9 @@ public class TripPoint {
 			String line = scan.nextLine();
 			String[] stuff = line.split(",");
 			
-			int time1 = Integer.parseInt(stuff[0]);
-			double latitude = Double.parseDouble(stuff[1]);
-			double longitude = Double.parseDouble(stuff[2]);
+			int time1 = Integer.parseInt(stuff[0].trim());
+			double latitude = Double.parseDouble(stuff[1].trim());
+			double longitude = Double.parseDouble(stuff[2].trim());
 			
 			TripPoint data = new TripPoint(time1, latitude, longitude);
 			trip.add(data);
