@@ -31,8 +31,6 @@ public class TripPoint {
 	public static ArrayList<TripPoint> getTrip() {
 		return new ArrayList<>(trip);
 	}
-
-//------------------------------------------------------------------------
 	
 	public static double haversineDistance(TripPoint a, TripPoint b) {
 		final double RADIUS = 6371.0;
@@ -40,17 +38,14 @@ public class TripPoint {
 		double latidute1 = Math.toRadians(a.getLat());
 		double latidute2 = Math.toRadians(b.getLat());
 		
-		double longA = Math.toRadians(a.getLon());
-		double longB = Math.toRadians(b.getLon());
-		
-		double deltaLatAB = latidute2 - latidute1;
-		double deltaLonAB = longB - longA;
+		double deltaLatAB = Math.toRadians(b.getLat() - a.getLat());
+		double deltaLonAB = Math.toRadians(b.getLon() - a.getLon());
 		
 		double step2 = Math.sin(deltaLatAB / 2) * Math.sin(deltaLatAB / 2) 
-				+ Math.cos(latidute1) * Math.cos(latidute2) * Math.sin( deltaLonAB / 2) 
+				+ Math.cos(latidute1) * Math.cos(latidute2) * Math.sin(deltaLonAB / 2) 
 				* Math.sin(deltaLonAB / 2);
 		
-		double step3 = Math.asin(Math.sqrt(step2));
+		double step3 = 2 * Math.asin(Math.sqrt(step2));
 		
 		return RADIUS * step3;
 	}
@@ -68,8 +63,6 @@ public class TripPoint {
 	}
 	
 	public static double avgSpeed(TripPoint a, TripPoint b) {
-		//my cat just laid on my arm and trapped it how am i supost to code with one hand?
-		//at least shes cute
 		
 		double distanceAB = haversineDistance(a, b);
 		
